@@ -116,24 +116,22 @@
                 @endforeach
                 </tbody>
             </table>
-            <div>
-                <label for="pagination">Mostrar:</label>
-                <select name="pagination" id="pagination" class="form-control" onchange="this.form.submit()">
-                    <option value="5" {{ Request::input('pagination') == 5 ? 'selected' : '' }}>5</option>
-                    <option value="10" {{ Request::input('pagination') == 10 ? 'selected' : '' }}>10</option>
-                    <option value="15" {{ Request::input('pagination') == 15 ? 'selected' : '' }}>15</option>
-                    <option value="25" {{ Request::input('pagination') == 25 ? 'selected' : '' }}>25</option>
-                    <option value="50" {{ Request::input('pagination') == 50 ? 'selected' : '' }}>50</option>
-                    <option value="100" {{ Request::input('pagination') == 100 ? 'selected' : '' }}>100</option>
-                </select>
-            </div>
+            <label for="hasPages">Mostrar:</label>
+            <select name="hasPages" id="hasPages" class="form-control" onchange="this.form.submit()">
+                <option value="5" {{ Request::input('hasPages', 10) == 5 ? 'selected' : '' }}>5</option>
+                <option value="10" {{ Request::input('hasPages', 10) == 10 ? 'selected' : '' }}>10</option>
+                <option value="15" {{ Request::input('hasPages', 10) == 15 ? 'selected' : '' }}>15</option>
+                <option value="25" {{ Request::input('hasPages', 10) == 25 ? 'selected' : '' }}>25</option>
+                <option value="50" {{ Request::input('hasPages', 10) == 50 ? 'selected' : '' }}>50</option>
+                <option value="100" {{ Request::input('hasPages', 10) == 100 ? 'selected' : '' }}>100</option>
+            </select>
 
         @else
             <div class="px-6 py-4">
                 No existen productos coincidentes
             </div>
         @endif
-
+        s
         @if($products->hasPages())
             <div class="px-6 py-4">
                 {{ $products->links() }}

@@ -12,7 +12,7 @@ class Productos2 extends Component
 
     public $search;
 
-    public function updatingSearch2() {
+    public function updatingSearch() {
         $this->resetPage();
     }
 
@@ -22,6 +22,11 @@ class Productos2 extends Component
             ->layout('layouts.admin');
     }
 
+    public function index(Request $request) {
+        $pagination = $request->input('pagination', 10); // Obtener el valor de la paginación de la solicitud
+        $products = Product::orderBy('name')->paginate($pagination); // Actualizar la consulta para incluir la paginación
+        return view('products.index', ['products' => $products]);
+    }
 
 }
 
