@@ -12,9 +12,10 @@ use App\Http\Livewire\Admin\ShowCity;
 use App\Http\Livewire\Admin\ShowDepartment;
 use App\Http\Livewire\Admin\ShowProducts;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\Productos2;
 
 Route::get('/', ShowProducts::class)->name('admin.index');
-
+Route::get('productos2', Productos2::class)->name('admin.productos2');
 Route::get('products/create', CreateProduct::class)->name('admin.products.create');
 Route::get('products/{product}/edit', EditProduct::class)->name('admin.products.edit');
 Route::post('product/{product}/files', [ProductController::class, 'files'])->name('admin.products.files');
