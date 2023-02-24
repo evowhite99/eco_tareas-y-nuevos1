@@ -13,15 +13,11 @@ class ProductFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
+    public function definition() {
         $name = $this->faker->sentence(2);
-
         $subcategory = Subcategory::all()->random();
         $category = $subcategory->category;
-
         $brand = $category->brands->random();
-
         return [
             'name' => $name,
             'slug' => Str::slug($name),
@@ -29,8 +25,9 @@ class ProductFactory extends Factory
             'price' => $this->faker->randomElement([19.99, 49.99, 99.99]),
             'subcategory_id' => $subcategory->id,
             'brand_id' => $brand->id,
-            'quantity'=> $subcategory->color ? null : 15,
-            'status' => 2
+            'quantity' => $subcategory->color ? null : 15,
+            'status' => 2,
+            'sold' => 0,
         ];
     }
 }

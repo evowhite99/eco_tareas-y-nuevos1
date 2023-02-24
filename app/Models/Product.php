@@ -12,32 +12,30 @@ class Product extends Model
     const BORRADOR = 1;
     const PUBLICADO = 2;
 
-    protected $fillable = ['name', 'slug', 'description', 'price', 'subcategory_id', 'brand_id', 'quantity'];
-    //protected $guarded = ['id', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'slug', 'description', 'price', 'subcategory_id', 'brand_id', 'quantity', 'sold'];
 
-    public function sizes(){
+    //protected $guarded = ['id', 'created_at', 'updated_at'];
+    public function sizes() {
         return $this->hasMany(Size::class);
     }
 
-    public function brand(){
+    public function brand() {
         return $this->belongsTo(Brand::class);
     }
 
-    public function subcategory(){
+    public function subcategory() {
         return $this->belongsTo(Subcategory::class);
     }
 
-    public function colors(){
+    public function colors() {
         return $this->belongsToMany(Color::class)->withPivot('quantity', 'id');
     }
 
-    public function images()
-    {
+    public function images() {
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function getRouteKeyName()
-    {
+    public function getRouteKeyName() {
         return 'slug';
     }
 }

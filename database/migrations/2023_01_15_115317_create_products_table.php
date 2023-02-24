@@ -12,28 +12,20 @@ class CreateProductsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-
             $table->string('name');
             $table->string('slug');
-
             $table->text('description');
-
             $table->float('price');
-
             $table->foreignId('subcategory_id')->references('id')
                 ->on('subcategories')->onDelete('cascade');
-
             $table->foreignId('brand_id')->references('id')
                 ->on('brands')->onDelete('cascade');
-
+            $table->integer('sold')->default(0);
             $table->integer('quantity')->nullable();
-
             $table->enum('status', [Product::BORRADOR, Product::PUBLICADO])->default(Product::BORRADOR);
-
             $table->timestamps();
         });
     }
@@ -43,8 +35,7 @@ class CreateProductsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('products');
     }
 }
