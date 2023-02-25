@@ -20,7 +20,40 @@
                          placeholder="Introduzca el nombre del producto a buscar"/>
         </div>
 
+        <div class="font-bold">
+            ORDENAR
+        </div>
+        <th scope="col">
+            <button type="button" class="bg-green-200 font-bold">
+                <a href="#" wire:click.prevent="sortBy('name')">Nombre</a>
+            </button>
+        </th>
+        <th scope="col">
+            <button type="button" class="bg-green-200 font-bold">
 
+                <a href="#" wire:click.prevent="sortBy('price')">Precio</a>
+            </button>
+
+        </th>
+        <th scope="col">
+            <button type="button" class="bg-green-200 font-bold">
+
+                <a href="#" wire:click.prevent="sortBy('subcategory.category.name')">Categoría</a>
+            </button>
+
+        </th>
+        <th scope="col">
+            <button type="button" class="bg-green-200 font-bold">
+
+                <a href="#" wire:click.prevent="sortBy('brand_id.name')">Marca</a>
+            </button>
+
+        </th>
+
+
+        <div class="mt-7 font-bold">
+            APARECER/DESAPARECER
+        </div>
         <div class="form-check dropdown-item">
 
             <input class="form-check-input" type="checkbox" wire:model="showName">

@@ -12,6 +12,9 @@ class Productos2 extends Component
 
     public $search;
     public $pagination = 10;
+    public $sortField = 'name';
+    public $sortDirection = 'asc';
+
 
     public $showImage = true;
     public $showName = true;
@@ -29,9 +32,31 @@ class Productos2 extends Component
         $this->resetPage();
     }
 
+    public function sortBy($field) {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            if ($field === 'subcategory.category.name') {
+                $this->sortField = 'subcategory_id';
+            } else if ($field === 'brand_id.name') {
+                $this->sortField = 'brand_id';
+
+            } else {
+                $this->sortField = $field;
+            }
+
+        }
+
+
+    }
+
+
     public function render() {
+
+
         $products = Product::where('name', 'LIKE', "%{$this->search}%")
-            ->paginate($this->pagination); // Usa la propiedad pagination para definir la cantidad de elementos por página
+            ->orderBy($this->sortField)
+            ->paginate($this->pagination);
         return view('livewire.admin.productos2', compact('products'), [
                 'showImage' => $this->showImage,
                 'showName' => $this->showName,
@@ -46,6 +71,8 @@ class Productos2 extends Component
             ]
         )
             ->layout('layouts.admin');
+
+
     }
 
 
