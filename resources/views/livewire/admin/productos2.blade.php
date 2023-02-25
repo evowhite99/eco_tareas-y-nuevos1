@@ -22,10 +22,7 @@
 
 
         <div class="form-check dropdown-item">
-            <input class="form-check-input" type="checkbox" wire:model="showImage">
-            <label class="form-check-label" for="defaultCheck1">
-                Imagen
-            </label>
+
             <input class="form-check-input" type="checkbox" wire:model="showName">
             <label class="form-check-label" for="defaultCheck1">
                 Nombre
@@ -96,11 +93,13 @@
                         </th>
                     @endif
 
+                    @if($showEdit)
 
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-
-                    </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Editar
+                        </th>
+                    @endif
 
                     @if($showBrand)
 
@@ -141,10 +140,10 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($products as $product)
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="flex items-center">
-                                @if($showImage)
+                    <tr>                                        @if($showName)
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
 
                                     <div class="flex-shrink-0 h-10 w-10 object-cover">
                                         <img class="h-10 w-10 rounded-full"
@@ -153,18 +152,17 @@
 
 
                                     </div>
-                                @endif
 
-                                <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">
-                                        @if($showName)
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">
 
                                             {{ $product->name }}
-                                        @endif
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
+                            </td>
+
+                        @endif
                         @if($showCategory)
 
                             <td class="px-6 py-4 whitespace-nowrap">
