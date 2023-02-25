@@ -20,50 +20,123 @@
                          placeholder="Introduzca el nombre del producto a buscar"/>
         </div>
 
+
+        <div class="form-check dropdown-item">
+            <input class="form-check-input" type="checkbox" wire:model="showImage">
+            <label class="form-check-label" for="defaultCheck1">
+                Imagen
+            </label>
+            <input class="form-check-input" type="checkbox" wire:model="showName">
+            <label class="form-check-label" for="defaultCheck1">
+                Nombre
+            </label>
+            <input class="form-check-input" type="checkbox" wire:model="showCategory">
+            <label class="form-check-label" for="defaultCheck1">
+                Categoria
+            </label>
+            <input class="form-check-input" type="checkbox" wire:model="showStatus">
+            <label class="form-check-label" for="defaultCheck1">
+                Estado
+            </label>
+            <input class="form-check-input" type="checkbox" wire:model="showPrice">
+            <label class="form-check-label" for="defaultCheck1">
+                Precio
+            </label>
+            <input class="form-check-input" type="checkbox" wire:model="showEdit">
+            <label class="form-check-label" for="defaultCheck1">
+                Editar
+            </label>
+            <input class="form-check-input" type="checkbox" wire:model="showBrand">
+            <label class="form-check-label" for="defaultCheck1">
+                Marca
+            </label>
+            <input class="form-check-input" type="checkbox" wire:model="showSold">
+            <label class="form-check-label" for="defaultCheck1">
+                Vendidos
+            </label>
+            <input class="form-check-input" type="checkbox" wire:model="showStock">
+            <label class="form-check-label" for="defaultCheck1">
+                Stock
+            </label>
+            <input class="form-check-input" type="checkbox" wire:model="showCreated">
+            <label class="form-check-label" for="defaultCheck1">
+                Fecha
+            </label>
+        </div>
         @if($products->count())
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Nombre
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Categoría
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Estado
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Precio
-                    </th>
+                    @if($showName)
+
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+
+                            Nombre
+                        </th>
+                    @endif
+                    @if($showCategory)
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Categoría
+                        </th>
+                    @endif
+                    @if($showStatus)
+
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Estado
+                        </th>
+                    @endif
+                    @if($showPrice)
+
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Precio
+                        </th>
+                    @endif
+
+
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 
                     </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Marca
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Vendidos
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Stock
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Fecha
-                    </th>
 
-                    <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Editar</span>
-                    </th>
+                    @if($showBrand)
+
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Marca
+                        </th>
+                    @endif
+                    @if($showSold)
+
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Vendidos
+                        </th>
+                    @endif
+                    @if($showStock)
+
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Stock
+                        </th>
+                    @endif
+                    @if($showCreated)
+
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Fecha
+                        </th>
+                    @endif
+                    @if($showEdit)
+
+                        <th scope="col" class="relative px-6 py-3">
+                            <span class="sr-only">Editar</span>
+                        </th>
+                    @endif
+
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -71,47 +144,81 @@
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10 object-cover">
-                                    <img class="h-10 w-10 rounded-full"
-                                         src="{{ $product->images->count() ? Storage::url($product->images->first()->url) : 'img/default.jpg'  }}"
-                                         alt="">
-                                </div>
+                                @if($showImage)
+
+                                    <div class="flex-shrink-0 h-10 w-10 object-cover">
+                                        <img class="h-10 w-10 rounded-full"
+                                             src="{{ $product->images->count() ? Storage::url($product->images->first()->url) : 'img/default.jpg'  }}"
+                                             alt="">
+
+
+                                    </div>
+                                @endif
+
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">
-                                        {{ $product->name }}
+                                        @if($showName)
+
+                                            {{ $product->name }}
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ $product->subcategory->category->name }}</div>
-                            <div class="text-sm text-gray-500">{{ $product->subcategory->name }}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        @if($showCategory)
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">{{ $product->subcategory->category->name }}</div>
+                                <div class="text-sm text-gray-500">{{ $product->subcategory->name }}</div>
+                            </td>
+                        @endif
+                        @if($showStatus)
+
+                            <td class="px-6 py-4 whitespace-nowrap">
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $product->status == 1 ? 'red' : 'green'
                             }}-100 text-{{ $product->status == 1 ? 'red' : 'green' }}-800">
                                 {{ $product->status == 1 ? 'Borrador' : 'Publicado' }}
                             </span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{ $product->price }} &euro;
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="{{ route('admin.products.edit', $product) }}"
-                               class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div>{{ $product->brand->name }}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div>{{ $product->sold }}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div>{{ $product->quantity }}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div>{{ $product->created_at}}</div>
-                        </td>
+                            </td>
+                        @endif
+                        @if($showPrice)
+
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $product->price }} &euro;
+                            </td>
+                        @endif
+                        @if($showEdit)
+
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="{{ route('admin.products.edit', $product) }}"
+                                   class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                            </td>
+                        @endif
+                        @if($showBrand)
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>{{ $product->brand->name }}</div>
+                            </td>
+                        @endif
+                        @if($showSold)
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>{{ $product->sold }}</div>
+                            </td>
+                        @endif
+                        @if($showStock)
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>{{ $product->quantity }}</div>
+                            </td>
+                        @endif
+                        @if($showCreated)
+
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div>{{ $product->created_at}}</div>
+                            </td>
+                        @endif
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -131,7 +238,8 @@
                 No existen productos coincidentes
             </div>
         @endif
-        s
+
+
         @if($products->hasPages())
             <div class="px-6 py-4">
                 {{ $products->links() }}
