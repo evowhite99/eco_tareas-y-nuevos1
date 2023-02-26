@@ -42,7 +42,7 @@
             <label for="price">Precio:</label>
             <select wire:model="selectedPrice" id="price" class="form-control">
                 <option value="">Todos los precios</option>
-                <option value="19.99">19.99</option>
+                <option value="19.99" dusk="botonPrecio">19.99</option>
                 <option value="49.99">49.99</option>
                 <option value="99.99">99.99</option>
             </select>
@@ -78,7 +78,7 @@
         <th scope="col">
             <button type="button" class="bg-green-200 font-bold">
 
-                <a href="#" wire:click.prevent="sortBy('brand_id.name')">Marca</a>
+                <a href="#" wire:click.prevent="sortBy('brand_id.name')" dusk="botonMarca">Marca</a>
             </button>
 
         </th>
@@ -89,11 +89,11 @@
         </div>
         <div class="form-check dropdown-item">
 
-            <input class="form-check-input" type="checkbox" wire:model="showName">
+            <input class="botonNombre form-check-input" type="checkbox" wire:model="showName">
             <label class="form-check-label" for="defaultCheck1">
                 Nombre
             </label>
-            <input class="form-check-input" type="checkbox" wire:model="showCategory">
+            <input class="botonCategoria form-check-input" type="checkbox" wire:model="showCategory">
             <label class="form-check-label" for="defaultCheck1">
                 Categoria
             </label>
@@ -289,7 +289,7 @@
             </table>
             <label for="pagination">Mostrar:</label>
             <select name="pagination" id="pagination" class="form-control" wire:model="pagination">
-                <option value="5">5</option>
+                <option value="5" dusk="boton5">5</option>
                 <option value="10">10</option>
                 <option value="15">15</option>
                 <option value="25">25</option>
