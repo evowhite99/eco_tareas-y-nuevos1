@@ -16,8 +16,7 @@ class ProductController extends Controller
         $product->images()->create([
             'url' => $url
         ]);
-        $productos = Product::orderBy('id', 'DESC')->limit(5)->get();
-        return view('productos2', ['productos' => $productos]);
        
+
     }
 }
