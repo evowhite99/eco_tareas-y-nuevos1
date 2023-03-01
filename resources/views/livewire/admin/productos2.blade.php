@@ -88,42 +88,51 @@
             APARECER/DESAPARECER
         </div>
         <div class="form-check dropdown-item">
-
-            <input class="botonNombre form-check-input" type="checkbox" wire:model="showName">
             <label class="form-check-label" for="defaultCheck1">
                 Nombre
+                <input class="botonNombre form-check-input" type="checkbox" wire:model="showName">
+
             </label>
-            <input class="botonCategoria form-check-input" type="checkbox" wire:model="showCategory">
             <label class="form-check-label" for="defaultCheck1">
                 Categoria
+                <input class="botonCategoria form-check-input" type="checkbox" wire:model="showCategory">
+
             </label>
-            <input class="form-check-input" type="checkbox" wire:model="showStatus">
+
             <label class="form-check-label" for="defaultCheck1">
                 Estado
+                <input class="form-check-input" type="checkbox" wire:model="showStatus">
+
             </label>
-            <input class="form-check-input" type="checkbox" wire:model="showPrice">
             <label class="form-check-label" for="defaultCheck1">
                 Precio
+                <input class="form-check-input" type="checkbox" wire:model="showPrice">
+
             </label>
-            <input class="form-check-input" type="checkbox" wire:model="showEdit">
             <label class="form-check-label" for="defaultCheck1">
                 Editar
+                <input class="form-check-input" type="checkbox" wire:model="showEdit">
+
             </label>
-            <input class="form-check-input" type="checkbox" wire:model="showBrand">
             <label class="form-check-label" for="defaultCheck1">
                 Marca
+                <input class="form-check-input" type="checkbox" wire:model="showBrand">
+
             </label>
-            <input class="form-check-input" type="checkbox" wire:model="showSold">
             <label class="form-check-label" for="defaultCheck1">
                 Vendidos
+                <input class="form-check-input" type="checkbox" wire:model="showSold">
+
             </label>
-            <input class="form-check-input" type="checkbox" wire:model="showStock">
             <label class="form-check-label" for="defaultCheck1">
                 Stock
+                <input class="form-check-input" type="checkbox" wire:model="showStock">
+
             </label>
-            <input class="form-check-input" type="checkbox" wire:model="showCreated">
             <label class="form-check-label" for="defaultCheck1">
                 Fecha
+                <input class="form-check-input" type="checkbox" wire:model="showCreated">
+
             </label>
         </div>
         @if($products->count())

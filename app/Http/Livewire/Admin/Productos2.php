@@ -61,23 +61,24 @@ class Productos2 extends Component
 
     public function render() {
 
-        $products = Product::query()
-            ->when($this->selectedCategory, function ($query) {
-                return $query->whereHas('subcategory.category', function ($query) {
-                    $query->where('id', $this->selectedCategory);
-                });
-            })
-            ->when($this->selectedBrand, function ($query) {
-                return $query->whereHas('brand', function ($query) {
-                    $query->where('brand_id', $this->selectedBrand);
-                });
-            })
-            ->when($this->selectedPrice, function ($query) {
-                return $query->where('price', $this->selectedPrice);
-            })
-            ->when($this->selectedDate, function ($query) {
-                return $query->whereDate('created_at', $this->selectedDate);
-            })
+        $query = Product::query();
+        if ($this->selectedCategory) {
+            $query->whereHas('subcategory.category', function ($query) {
+                $query->where('id', $this->selectedCategory);
+            });
+        }
+        if ($this->selectedBrand) {
+            $query->whereHas('brand', function ($query) {
+                $query->where('brand_id', $this->selectedBrand);
+            });
+        }
+        if ($this->selectedPrice) {
+            $query->where('price', $this->selectedPrice);
+        }
+        if ($this->selectedDate) {
+            $query->whereDate('created_at', $this->selectedDate);
+        }
+        $products = $query
             ->where('name', 'LIKE', "%{$this->search}%")
             ->orderBy($this->sortField)
             ->paginate($this->pagination);
