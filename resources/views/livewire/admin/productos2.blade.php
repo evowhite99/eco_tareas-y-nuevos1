@@ -58,27 +58,27 @@
         </div>
         <th scope="col">
             <button type="button" class="bg-green-200 font-bold">
-                <a href="#" wire:click.prevent="sortBy('name')">Nombre</a>
+                <a href="#" wire:click="sortBy('name')">Nombre</a>
             </button>
         </th>
         <th scope="col">
             <button type="button" class="bg-green-200 font-bold">
 
-                <a href="#" wire:click.prevent="sortBy('price')">Precio</a>
-            </button>
-
-        </th>
-        <th scope="col">
-            <button type="button" class="bg-green-200 font-bold">
-
-                <a href="#" wire:click.prevent="sortBy('subcategory.category.name')">Categoría</a>
+                <a href="#" wire:click="sortBy('price')">Precio</a>
             </button>
 
         </th>
         <th scope="col">
             <button type="button" class="bg-green-200 font-bold">
 
-                <a href="#" wire:click.prevent="sortBy('brand_id.name')" dusk="botonMarca">Marca</a>
+                <a href="#" wire:click="sortBy('subcategory.category.name')">Categoría</a>
+            </button>
+
+        </th>
+        <th scope="col">
+            <button type="button" class="bg-green-200 font-bold">
+
+                <a href="#" wire:click="sortBy('brand_id.name')" dusk="botonMarca">Marca</a>
             </button>
 
         </th>
