@@ -87,54 +87,77 @@
         <div class="mt-7 font-bold">
             APARECER/DESAPARECER
         </div>
-        <div class="form-check dropdown-item">
-            <label class="form-check-label" for="defaultCheck1">
-                Nombre
-                <input class="botonNombre form-check-input" type="checkbox" wire:model="showName">
+        <table>
+            <tr>
+                <th>
+                    <label for="showName">Nombre:</label>
+                    <select id="showName" wire:model="showName">
+                        <option value=1>Mostrar</option>
+                        <option value=0>Ocultar</option>
+                    </select>
+                </th>
+                <th>
+                    <label for="showCategory">Categorias:</label>
+                    <select id="showCategory" wire:model="showCategory">
+                        <option value=1>Mostrar</option>
+                        <option value=0>Ocultar</option>
+                    </select>
+                </th>
+                <th>
+                    <label for="showStatus">Estado:</label>
+                    <select id="showStatus" wire:model="showStatus">
+                        <option value=1>Mostrar</option>
+                        <option value=0>Ocultar</option>
+                    </select>
+                </th>
+                <th>
+                    <label for="showPrice">Precio:</label>
+                    <select id="showPrice" wire:model="showPrice">
+                        <option value=1>Mostrar</option>
+                        <option value=0>Ocultar</option>
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label for="showEdit">Editar:</label>
+                    <select id="showEdit" wire:model="showEdit">
+                        <option value=1>Mostrar</option>
+                        <option value=0>Ocultar</option>
+                    </select>
+                </th>
 
-            </label>
-            <label class="form-check-label" for="defaultCheck1">
-                Categoria
-                <input class="botonCategoria form-check-input" type="checkbox" wire:model="showCategory">
+                <th>
+                    <label for="showBrand">Marca:</label>
+                    <select id="showBrand" wire:model="showBrand">
+                        <option value=1>Mostrar</option>
+                        <option value=0>Ocultar</option>
+                    </select>
+                </th>
 
-            </label>
-
-            <label class="form-check-label" for="defaultCheck1">
-                Estado
-                <input class="form-check-input" type="checkbox" wire:model="showStatus">
-
-            </label>
-            <label class="form-check-label" for="defaultCheck1">
-                Precio
-                <input class="form-check-input" type="checkbox" wire:model="showPrice">
-
-            </label>
-            <label class="form-check-label" for="defaultCheck1">
-                Editar
-                <input class="form-check-input" type="checkbox" wire:model="showEdit">
-
-            </label>
-            <label class="form-check-label" for="defaultCheck1">
-                Marca
-                <input class="form-check-input" type="checkbox" wire:model="showBrand">
-
-            </label>
-            <label class="form-check-label" for="defaultCheck1">
-                Vendidos
-                <input class="form-check-input" type="checkbox" wire:model="showSold">
-
-            </label>
-            <label class="form-check-label" for="defaultCheck1">
-                Stock
-                <input class="form-check-input" type="checkbox" wire:model="showStock">
-
-            </label>
-            <label class="form-check-label" for="defaultCheck1">
-                Fecha
-                <input class="form-check-input" type="checkbox" wire:model="showCreated">
-
-            </label>
-        </div>
+                <th>
+                    <label for="showSold">Vendidos:</label>
+                    <select id="showSold" wire:model="showSold">
+                        <option value=1>Mostrar</option>
+                        <option value=0>Ocultar</option>
+                    </select>
+                </th>
+                <th>
+                    <label for="showStock">Stock:</label>
+                    <select id="showStock" wire:model="showStock">
+                        <option value=1>Mostrar</option>
+                        <option value=0>Ocultar</option>
+                    </select>
+                </th>
+                <th>
+                    <label for="showCreated">Fecha:</label>
+                    <select id="showCreated" wire:model="showCreated">
+                        <option value=1>Mostrar</option>
+                        <option value=0>Ocultar</option>
+                    </select>
+                </th>
+            </tr>
+        </table>
         @if($products->count())
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
