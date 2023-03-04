@@ -21,7 +21,7 @@ class Productos3rec extends Component
         $products = Product::query()->applyFilters([
             'search' => $this->search,
         ])->paginate(10);
-        return view('livewire.admin.show-products', compact('products'))
+        return view('livewire.admin.productos3rec', compact('products'))
             ->layout('layouts.admin');
     }
 }
