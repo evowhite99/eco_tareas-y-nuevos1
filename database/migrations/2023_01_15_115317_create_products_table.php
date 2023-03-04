@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('brand_id')->references('id')
                 ->on('brands')->onDelete('cascade');
             $table->integer('sold')->default(0);
+            $table->integer('wait')->default(0);
             $table->integer('quantity')->nullable();
             $table->enum('status', [Product::BORRADOR, Product::PUBLICADO])->default(Product::BORRADOR);
             $table->timestamps();

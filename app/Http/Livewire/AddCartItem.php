@@ -16,29 +16,24 @@ class AddCartItem extends Component
         'size_id' => null,
     ];
 
-    public function mount()
-    {
+    public function mount() {
         $this->quantity = qty_available($this->product->id);
         $this->options['image'] = Storage::url($this->product->images->first()->url);
     }
 
-    public function decrement()
-    {
+    public function decrement() {
         $this->qty--;
     }
 
-    public function increment()
-    {
+    public function increment() {
         $this->qty++;
     }
 
-    public function render()
-    {
+    public function render() {
         return view('livewire.add-cart-item');
     }
 
-    public function addItem()
-    {
+    public function addItem() {
         Cart::add([
             'id' => $this->product->id,
             'name' => $this->product->name,
@@ -47,11 +42,10 @@ class AddCartItem extends Component
             'weight' => 550,
             'options' => $this->options,
         ]);
-
+        $this->product->wait = $this->qty + $this->product->wait;
+        $this->product->save();
         $this->quantity = qty_available($this->product->id);
-
         $this->reset('qty');
-
         $this->emitTo('dropdown-cart', 'render');
     }
 }

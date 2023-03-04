@@ -18,22 +18,19 @@ class AddCartItemSize extends Component
     public $quantity = 0;
     public $options = [];
 
-    public function mount()
-    {
+    public function mount() {
         $this->sizes = $this->product->sizes;
         $this->options['image'] = Storage::url($this->product->images->first()->url);
     }
 
-    public function updatedSizeId($value)
-    {
+    public function updatedSizeId($value) {
         $size = Size::find($value);
         $this->colors = $size->colors;
         $this->options['size'] = $size->name;
         $this->options['size_id'] = $size->id;
     }
 
-    public function updatedColorId($value)
-    {
+    public function updatedColorId($value) {
         $size = Size::find($this->size_id);
         $color = $size->colors->find($value);
         $this->quantity = qty_available($this->product->id, $color->id, $size->id);
@@ -41,18 +38,15 @@ class AddCartItemSize extends Component
         $this->options['color_id'] = $color->id;
     }
 
-    public function decrement()
-    {
+    public function decrement() {
         $this->qty--;
     }
 
-    public function increment()
-    {
+    public function increment() {
         $this->qty++;
     }
 
-    public function addItem()
-    {
+    public function addItem() {
         Cart::add([
             'id' => $this->product->id,
             'name' => $this->product->name,
@@ -61,16 +55,14 @@ class AddCartItemSize extends Component
             'weight' => 550,
             'options' => $this->options,
         ]);
-
+        $this->product->wait = $this->qty + $this->product->wait;
+        $this->product->save();
         $this->quantity = qty_available($this->product->id, $this->color_id, $this->size_id);
-
         $this->reset('qty');
-
         $this->emitTo('dropdown-cart', 'render');
     }
 
-    public function render()
-    {
+    public function render() {
         return view('livewire.add-cart-item-size');
     }
 }

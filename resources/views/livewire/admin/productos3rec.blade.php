@@ -18,7 +18,19 @@
                          type="text"
                          placeholder="Introduzca el nombre del producto a buscar"/>
         </div>
-
+        <div class="font-bold">
+            ORDENAR
+        </div>
+        <th scope="col">
+            <button type="button" class="bg-green-200 font-bold">
+                <a href="#" wire:click.prevent="sortBy('sold')">VENDIDOS</a>
+            </button>
+        </th>
+        <th scope="col">
+            <button type="button" class="bg-green-200 font-bold">
+                <a href="#" wire:click.prevent="sortBy('wait')">EN ESPERA</a>
+            </button>
+        </th>
         @if($products->count())
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -89,6 +101,12 @@
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <a href="{{ route('admin.products.edit', $product) }}"
                                class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $product->sold }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $product->wait }}
                         </td>
                     </tr>
                 @endforeach

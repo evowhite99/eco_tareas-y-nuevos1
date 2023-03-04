@@ -17,32 +17,27 @@ class AddCartItemColor extends Component
         'size_id' => null,
     ];
 
-    public function mount()
-    {
+    public function mount() {
         $this->colors = $this->product->colors;
         $this->options['image'] = Storage::url($this->product->images->first()->url);
     }
 
-    public function updatedColorId($value)
-    {
+    public function updatedColorId($value) {
         $color = $this->product->colors->find($value);
         $this->quantity = qty_available($this->product->id, $color->id);
         $this->options['color'] = $color->name;
         $this->options['color_id'] = $color->id;
     }
 
-    public function decrement()
-    {
+    public function decrement() {
         $this->qty--;
     }
 
-    public function increment()
-    {
+    public function increment() {
         $this->qty++;
     }
 
-    public function addItem()
-    {
+    public function addItem() {
         Cart::add([
             'id' => $this->product->id,
             'name' => $this->product->name,
@@ -51,16 +46,14 @@ class AddCartItemColor extends Component
             'weight' => 550,
             'options' => $this->options,
         ]);
-
+        $this->product->wait = $this->qty + $this->product->wait;
+        $this->product->save();
         $this->quantity = qty_available($this->product->id, $this->color_id);
-
         $this->reset('qty');
-
         $this->emitTo('dropdown-cart', 'render');
     }
 
-    public function render()
-    {
+    public function render() {
         return view('livewire.add-cart-item-color');
     }
 }

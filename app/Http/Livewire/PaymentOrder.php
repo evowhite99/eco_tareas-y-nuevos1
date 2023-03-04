@@ -21,6 +21,7 @@ class PaymentOrder extends Component
 
     public function payOrder() {
         $this->productSold();
+        $this->enEspera();
         $this->order->status = 2;
         $this->order->save();
         return redirect()->route('orders.show', $this->order);
@@ -31,6 +32,15 @@ class PaymentOrder extends Component
         foreach ($items as $item) {
             $product = Product::find($item->id);
             $product->sold = $item->qty + $product->sold;
+            $product->save();
+        }
+    }
+
+    public function enEspera() {
+        $items = json_decode($this->order->content);
+        foreach ($items as $item) {
+            $product = Product::find($item->id);
+            $product->wait = $product->wait - $item->qty;
             $product->save();
         }
     }
