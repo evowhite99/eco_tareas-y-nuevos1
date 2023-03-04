@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Queries\ProductBuilder;
+use App\Filters\ProductFilter;
 
 class Product extends Model
 {
@@ -16,6 +18,14 @@ class Product extends Model
     protected $fillable = ['name', 'slug', 'description', 'price', 'subcategory_id', 'brand_id', 'quantity', 'sold'];
 
     //protected $guarded = ['id', 'created_at', 'updated_at'];
+    public function newEloquentBuilder($query) {
+        return new ProductBuilder($query);
+    }
+
+    public function newQueryFilter() {
+        return new ProductFilter();
+    }
+
     public function sizes() {
         return $this->hasMany(Size::class);
     }
@@ -53,19 +63,20 @@ class Product extends Model
             return $this->quantity;
         }
     }
-
-    public function getVentasAttribute() {
-        $id = $this->id;
-        $contador = 0;
-        $ordenes = Order::all();
-        foreach ($ordenes as $orden) {
-            $variable = json_decode($orden->content, true);
-            foreach ($variable as $algo) {
-                if ($algo['id'] == $id) {
-                    $contador = $contador + $algo['qty'];
+    /*
+        public function getVentasAttribute() {
+            $id = $this->id;
+            $contador = 0;
+            $ordenes = Order::all();
+            foreach ($ordenes as $orden) {
+                $variable = json_decode($orden->content, true);
+                foreach ($variable as $algo) {
+                    if ($algo['id'] == $id) {
+                        $contador = $contador + $algo['qty'];
+                    }
                 }
             }
+            return $contador;
         }
-        return $contador;
-    }
+    */
 }

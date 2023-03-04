@@ -12,15 +12,15 @@ class ShowProducts extends Component
 
     public $search;
 
-    public function updatingSearch()
-    {
+    public function updatingSearch() {
         $this->resetPage();
     }
 
-    public function render()
-    {
-        $products = Product::where('name', 'LIKE', "%{$this->search}%")->paginate(10);
-
+    public function render() {
+        // $products = Product::where('name', 'LIKE', "%{$this->search}%")->paginate(10);
+        $products = Product::query()->applyFilters([
+            'search' => $this->search,
+        ])->paginate(10);
         return view('livewire.admin.show-products', compact('products'))
             ->layout('layouts.admin');
     }
