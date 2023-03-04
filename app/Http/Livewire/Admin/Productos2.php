@@ -60,26 +60,33 @@ class Productos2 extends Component
 
 
     public function render() {
-
-        $query = Product::query();
-        if ($this->selectedCategory) {
-            $query->whereHas('subcategory.category', function ($query) {
-                $query->where('id', $this->selectedCategory);
-            });
-        }
-        if ($this->selectedBrand) {
-            $query->whereHas('brand', function ($query) {
-                $query->where('brand_id', $this->selectedBrand);
-            });
-        }
-        if ($this->selectedPrice) {
-            $query->where('price', $this->selectedPrice);
-        }
-        if ($this->selectedDate) {
-            $query->whereDate('created_at', $this->selectedDate);
-        }
-        $products = $query
-            ->where('name', 'LIKE', "%{$this->search}%")
+        /*
+               $query = Product::query();
+               if ($this->selectedCategory) {
+                   $query->whereHas('subcategory.category', function ($query) {
+                       $query->where('id', $this->selectedCategory);
+                   });
+               }
+               if ($this->selectedBrand) {
+                   $query->whereHas('brand', function ($query) {
+                       $query->where('brand_id', $this->selectedBrand);
+                   });
+               }
+               if ($this->selectedPrice) {
+                   $query->where('price', $this->selectedPrice);
+               }
+               if ($this->selectedDate) {
+                   $query->whereDate('created_at', $this->selectedDate);
+               }
+              $products = $query
+                   ->where('name', 'LIKE', "%{$this->search}%")*/
+        $products = Product::query()->applyFilters([
+            'search' => $this->search,
+            'selectedCategory' => $this->selectedCategory,
+            'selectedBrand' => $this->selectedBrand,
+            'selectedPrice' => $this->selectedPrice,
+            'selectedDate' => $this->selectedDate,
+        ])
             ->orderBy($this->sortField)
             ->paginate($this->pagination);
         return view('livewire.admin.productos2', compact('products'), [
