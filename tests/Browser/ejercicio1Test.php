@@ -13,8 +13,6 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 
-;
-
 class ejercicio1Test extends DuskTestCase
 {
     use DatabaseMigrations;
