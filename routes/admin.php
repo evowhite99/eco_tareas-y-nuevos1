@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Productos2;
 use App\Http\Livewire\Admin\Productos3;
 use App\Http\Livewire\Admin\Productos3rec;
+use App\Http\Livewire\Admin\Mostrar;
+use App\Http\Livewire\Admin\Papelera;
 
 Route::get('/', ShowProducts::class)->name('admin.index');
 Route::get('productos2', Productos2::class)->name('admin.productos2');
@@ -31,3 +33,6 @@ Route::get('orders/{order}', [OrderController::class, 'show'])->name('admin.orde
 Route::get('departments', DepartmentComponent::class)->name('admin.departments.index');
 Route::get('departments/{department}', ShowDepartment::class)->name('admin.departments.show');
 Route::get('cities/{city}', ShowCity::class)->name('admin.cities.show');
+Route::get('mostrar', Mostrar::class)->name('admin.mostrar');
+Route::get('papelera', Papelera::class)->name('admin.papelera');
+

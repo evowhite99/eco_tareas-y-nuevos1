@@ -44,6 +44,16 @@
                                     :active="request()->routeIs('admin.users.*')">
                         Usuarios
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link dusk="mostrarNuevo" href="{{ route('admin.mostrar') }}"
+                                    :active="request()->routeIs('admin.mostrar')">
+                        Mostrar Usuarios 2
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link dusk="papeleraNuevo" href="{{ route('admin.papelera') }}"
+                                    :active="request()->routeIs('admin.papelera')">
+                        Papelera
+                    </x-jet-nav-link>
                 </div>
             </div>
 
