@@ -13,8 +13,7 @@ class SubcategorySeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $subcategories = [
             /* Celulares y tablets */
             [
@@ -116,10 +115,29 @@ class SubcategorySeeder extends Seeder
                 'name' => 'Relojes',
                 'slug' => Str::slug('Relojes'),
             ],
+            /* Comida */
+            [
+                'category_id' => 6,
+                'name' => 'Patatas',
+                'slug' => Str::slug('Patatas'),
+            ],
+            [
+                'category_id' => 6,
+                'name' => 'Macarrones',
+                'slug' => Str::slug('Macarrones'),
+            ],
+            [
+                'category_id' => 6,
+                'name' => 'Carne',
+                'slug' => Str::slug('Carne'),
+            ],
+            [
+                'category_id' => 6,
+                'name' => 'Ensalada',
+                'slug' => Str::slug('Ensalada'),
+            ],
         ];
-
-        foreach ($subcategories as $subcategory)
-        {
+        foreach ($subcategories as $subcategory) {
             Subcategory::create($subcategory);
         }
     }

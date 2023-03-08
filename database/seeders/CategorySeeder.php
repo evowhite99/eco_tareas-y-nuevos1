@@ -14,8 +14,7 @@ class CategorySeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         $categories = [
             [
                 'name' => 'Celulares y tablets',
@@ -42,13 +41,15 @@ class CategorySeeder extends Seeder
                 'slug' => Str::slug('Moda'),
                 'icon' => '<i class="fas fa-tshirt"></i>'
             ],
+            [
+                'name' => 'Comida',
+                'slug' => Str::slug('Comida'),
+                'icon' => '<i class="fas fa-patatas"></i>'
+            ],
         ];
-
         foreach ($categories as $category) {
             $category = Category::factory()->create($category);
-
             $brands = Brand::factory(4)->create();
-
             foreach ($brands as $brand) {
                 $brand->categories()->attach($category->id);
             }

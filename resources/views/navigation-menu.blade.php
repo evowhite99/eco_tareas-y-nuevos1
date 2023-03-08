@@ -30,6 +30,11 @@
                         Categorías
                     </x-jet-nav-link>
 
+                    <x-jet-nav-link href="{{ route('admin.categorias2') }}"
+                                    :active="request()->routeIs('admin.categorias2')">
+                        Categorías 2
+                    </x-jet-nav-link>
+
                     <x-jet-nav-link href="{{ route('admin.brands.index') }}"
                                     :active="request()->routeIs('admin.brands.*')">
                         Marcas
