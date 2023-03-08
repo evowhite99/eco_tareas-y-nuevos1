@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\EX_ECOMMERCE_2022;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
-use Tests\DuskTestCase;
 use Tests\createData;
+use Tests\DuskTestCase;
 
 class probando1Test extends DuskTestCase
 {

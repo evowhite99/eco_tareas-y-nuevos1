@@ -1,19 +1,19 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\NUEVOS_EJERCICIOS;
 
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Spatie\Permission\Models\Role;
 use Tests\DuskTestCase;
-use App\Models\User;
-use App\Models\Brand;
-use App\Models\Image;
-use App\Models\Product;
-use App\Models\Category;
-use App\Models\Subcategory;
 
-class ejercicio1Test extends DuskTestCase
+;
+
+class nuevoCategorias2Test extends DuskTestCase
 {
     use DatabaseMigrations;
 
@@ -22,14 +22,22 @@ class ejercicio1Test extends DuskTestCase
     *
     * @return void
     */
-    public function test_ejercicio1() {
+    public function test_nuevoCategorias2() {
+
         //marca
-        $brand = Brand::factory()->create();
+        $brand = Brand::factory()->create([
+            'name' => 'nuevaMarca',
+        ]);
         //categoria
         $category = Category::factory()->create([
             'name' => 'Informatica',
             'slug' => 'Informatica',
             'icon' => 'Informatica',
+        ]);
+        $category2 = Category::factory()->create([
+            'name' => 'Algo',
+            'slug' => 'Algo',
+            'icon' => 'Algo',
         ]);
         $category->brands()->attach($brand->id);
         //subcategoria
@@ -37,23 +45,6 @@ class ejercicio1Test extends DuskTestCase
             'category_id' => $category->id,
             'name' => 'PC',
             'slug' => 'PC',
-        ]);
-        //productos
-        $p1 = Product::factory()->create([
-            'subcategory_id' => $subcategory->id,
-            'quantity' => '2'
-        ]);
-        $p2 = Product::factory()->create([
-            'subcategory_id' => $subcategory->id
-        ]);
-        //imagenes
-        Image::factory()->create([
-            'imageable_id' => $p1->id,
-            'imageable_type' => Product::class
-        ]);
-        Image::factory()->create([
-            'imageable_id' => $p2->id,
-            'imageable_type' => Product::class
         ]);
         //usuario
         $role = Role::create(['name' => 'admin']);
@@ -63,13 +54,18 @@ class ejercicio1Test extends DuskTestCase
             'password' => bcrypt('algo1234')
         ])->assignRole('admin');
         //test
-        $this->browse(function (Browser $browser) use ($usuario) {
+        $this->browse(function (Browser $browser) use ($usuario, $category) {
             $browser->loginAs($usuario)
-                ->visit('/admin/productos2')
-                ->assertSee('Productos 2')
-                ->screenshot('test1');
+                ->visit('/admin/categorias2')
+                ->select('#category', 1)
+                ->pause(200)
+                ->type('.buscador', 'Informatica')
+                ->assertSee($category)
+                ->screenshot('test6a')
+                ->type('.buscador', 'Informaticaaa')
+                ->pause(200)
+                ->screenshot('test6b');
         });
     }
-
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\EX_ECOMMERCE;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -15,7 +15,7 @@ use App\Models\Subcategory;
 
 ;
 
-class ejercicio6Test extends DuskTestCase
+class ejercicio2Test extends DuskTestCase
 {
     use DatabaseMigrations;
 
@@ -24,12 +24,9 @@ class ejercicio6Test extends DuskTestCase
     *
     * @return void
     */
-    public function test_ejercicio6() {
-
+    public function test_ejercicio2() {
         //marca
-        $brand = Brand::factory()->create([
-            'name' => 'nuevaMarca',
-        ]);
+        $brand = Brand::factory()->create();
         //categoria
         $category = Category::factory()->create([
             'name' => 'Informatica',
@@ -46,14 +43,27 @@ class ejercicio6Test extends DuskTestCase
         //productos
         $p1 = Product::factory()->create([
             'subcategory_id' => $subcategory->id,
-            'price' => 19.99,
-            'name' => 'prueba',
-            'created_at' => '03/03/2023',
-            'brand_id' => $brand->id,
+            'name' => 'aaa'
         ]);
         $p2 = Product::factory()->create([
             'subcategory_id' => $subcategory->id,
-            'price' => 49.99,
+            'name' => 'bbb'
+        ]);
+        $p3 = Product::factory()->create([
+            'subcategory_id' => $subcategory->id,
+            'name' => 'ccc'
+        ]);
+        $p4 = Product::factory()->create([
+            'subcategory_id' => $subcategory->id,
+            'name' => 'ddd'
+        ]);
+        $p5 = Product::factory()->create([
+            'subcategory_id' => $subcategory->id,
+            'name' => 'eee',
+        ]);
+        $p6 = Product::factory()->create([
+            'subcategory_id' => $subcategory->id,
+            'name' => 'fff'
         ]);
         //imagenes
         Image::factory()->create([
@@ -64,6 +74,22 @@ class ejercicio6Test extends DuskTestCase
             'imageable_id' => $p2->id,
             'imageable_type' => Product::class
         ]);
+        Image::factory()->create([
+            'imageable_id' => $p3->id,
+            'imageable_type' => Product::class
+        ]);
+        Image::factory()->create([
+            'imageable_id' => $p4->id,
+            'imageable_type' => Product::class
+        ]);
+        Image::factory()->create([
+            'imageable_id' => $p5->id,
+            'imageable_type' => Product::class
+        ]);
+        Image::factory()->create([
+            'imageable_id' => $p6->id,
+            'imageable_type' => Product::class
+        ]);
         //usuario
         $role = Role::create(['name' => 'admin']);
         $usuario = User::factory()->create([
@@ -72,29 +98,31 @@ class ejercicio6Test extends DuskTestCase
             'password' => bcrypt('algo1234')
         ])->assignRole('admin');
         //test
-        $this->browse(function (Browser $browser) use ($usuario, $p1) {
+        $this->browse(function (Browser $browser) use ($usuario, $p1, $p2, $p3, $p4, $p5, $p6) {
             $browser->loginAs($usuario)
                 ->visit('/admin/productos2')
-                ->click('@filtrarPrecio1')
+                ->click('@paginas5')
                 ->pause(200)
                 ->assertSee($p1)
-                ->select('#category', 1)
+                ->assertSee($p2)
+                ->assertSee($p3)
+                ->assertSee($p4)
+                ->assertSee($p5)
+                ->click('@paginas15')
                 ->pause(200)
-                ->assertSee($p1)
-                ->select('#brand', 1)
+                ->assertSee($p6)
+                ->click('@paginas25')
                 ->pause(200)
-                ->assertSee($p1)
-                ->type('#selectedDate', '03-03-2023')
+                ->assertSee($p6)
+                ->click('@paginas50')
                 ->pause(200)
-                ->assertSee($p1)
-                ->type('#selectedDate', 'prueba')
+                ->assertSee($p6)
+                ->click('@paginas100')
                 ->pause(200)
-                ->assertSee($p1)
-                ->type('#buscador', 'prueba')
-                ->pause(200)
-                ->assertSee($p1)
-                ->screenshot('test6');
+                ->assertSee($p6)
+                ->screenshot('test2');
         });
     }
+
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\REC_ECOMMERCE_2022;
 
 use App\Models\Brand;
 use App\Models\Category;
@@ -8,13 +8,11 @@ use App\Models\Image;
 use App\Models\Product;
 use App\Models\Subcategory;
 use App\Models\User;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Log;
 use Laravel\Dusk\Browser;
 use Spatie\Permission\Models\Role;
 use Tests\DuskTestCase;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
 
 class UnTestUnEmailTest extends DuskTestCase
 {

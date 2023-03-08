@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\EX_ECOMMERCE_2022;
 
 use App\Models\Brand;
 use App\Models\Category;
