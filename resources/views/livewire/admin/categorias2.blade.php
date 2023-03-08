@@ -14,7 +14,7 @@
             Filtrar por Nombre
         </div>
         <div class="px-6 py-4">
-            <x-jet-input class="w-full"
+            <x-jet-input class="buscador w-full"
                          wire:model="search"
                          type="text"
                          placeholder="Introduzca el nombre del producto a buscar"/>
