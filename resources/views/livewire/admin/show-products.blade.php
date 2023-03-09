@@ -5,7 +5,7 @@
                 Lista de productos
             </h2>
 
-            <x-button-link class="ml-auto" href="{{route('admin.products.create')}}">
+            <x-button-link dusk="agregarProducto" class="ml-auto" href="{{route('admin.products.create')}}">
                 Agregar producto
             </x-button-link>
         </div>
@@ -16,7 +16,7 @@
             <x-jet-input class="w-full"
                          wire:model="search"
                          type="text"
-                         placeholder="Introduzca el nombre del producto a buscar"/>
+                         placeholder="Introduzca el nombre del producto a buscar" dusk="buscador"/>
         </div>
 
         @if($products->count())
