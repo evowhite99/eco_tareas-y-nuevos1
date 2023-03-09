@@ -46,8 +46,10 @@ class Productos2 extends Component
         } else {
             if ($field === 'subcategory.category.name') {
                 $this->sortField = 'subcategory_id';
+                $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
             } else if ($field === 'brand_id.name') {
                 $this->sortField = 'brand_id';
+                $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
 
             } else {
                 $this->sortField = $field;
@@ -87,7 +89,7 @@ class Productos2 extends Component
             'selectedPrice' => $this->selectedPrice,
             'selectedDate' => $this->selectedDate,
         ])
-            ->orderBy($this->sortField)
+            ->orderBy($this->sortField, $this->sortDirection)
             ->paginate($this->pagination);
         return view('livewire.admin.productos2', compact('products'), [
                 'showImage' => $this->showImage,
