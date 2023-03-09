@@ -4,7 +4,7 @@
         x-bind:disabled="$wire.qty <= 1"
         wire:loading.attr="disabled"
         wire:target="decrement"
-        wire:click="decrement">
+        wire:click="decrement" dusk="restar">
         -
     </x-jet-secondary-button>
     <span class="mx-2 text-gray-700">{{ $qty }}</span>
@@ -12,7 +12,7 @@
         x-bind:disabled="$wire.qty >= $wire.quantity"
         wire:loading.attr="disabled"
         wire:target="increment"
-        wire:click="increment">
+        wire:click="increment" dusk="sumar">
         +
     </x-jet-secondary-button>
 </div>

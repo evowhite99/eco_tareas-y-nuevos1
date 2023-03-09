@@ -36,7 +36,7 @@ class nuevoLoginTest extends DuskTestCase
                 ->type('email', 'algo1234@gmail.com')
                 ->type('password', 'algo123456')
                 ->press('INICIAR SESIÓN')
-                ->pause(500)
+                ->pause(750)
                 ->assertSee('Estas credenciales no coinciden con nuestros registros.')
                 ->screenshot('test1');
         });
@@ -73,7 +73,7 @@ class nuevoLoginTest extends DuskTestCase
                 ->type('#password', 'algo')
                 ->type('#password_confirmation', 'algo123456')
                 ->click('#savePassword')
-                ->pause(400)
+                ->pause(750)
                 ->assertSee('La password debe tener al menos 8 caracteres.')
                 ->screenshot('test2');
         });
